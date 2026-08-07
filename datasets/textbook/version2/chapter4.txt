@@ -1,0 +1,7 @@
+Chapter 4: File Systems
+
+A file system organizes files on storage devices.
+
+Common file systems include NTFS, FAT32 and ext4.
+
+Directories help organize files hierarchically.

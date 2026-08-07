@@ -1,0 +1,7 @@
+Chapter 2: Process Management
+
+A process is a program in execution.
+
+The operating system schedules processes using different scheduling algorithms.
+
+Common scheduling algorithms include FCFS, SJF and Round Robin.

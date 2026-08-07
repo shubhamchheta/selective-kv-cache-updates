@@ -1,0 +1,7 @@
+Chapter 1: Introduction to Operating Systems
+
+An operating system manages computer hardware and software resources.
+
+It provides services for applications.
+
+Examples include Linux, Windows and macOS.

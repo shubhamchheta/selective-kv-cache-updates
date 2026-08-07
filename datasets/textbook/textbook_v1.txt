@@ -1,0 +1,48 @@
+Chapter 1: Introduction to Operating Systems
+
+An operating system manages computer hardware and software resources.
+It provides services for applications.
+Examples include Linux, Windows, and macOS.
+
+
+
+Chapter 2: Process Management
+
+A process is a program in execution.
+The operating system schedules processes using different scheduling algorithms.
+Common scheduling algorithms include FCFS, SJF, and Round Robin.
+
+
+
+Chapter 3: Memory Management
+
+Memory management allocates RAM to running processes.
+Virtual memory allows programs to use more memory than physically available.
+Paging divides memory into fixed-size pages.
+
+
+
+Chapter 4: File Systems
+
+A file system organizes files on storage devices.
+Common file systems include NTFS, FAT32, and ext4.
+Directories help organize files hierarchically.
+
+
+
+Chapter 5: CPU Scheduling
+
+Round Robin scheduling assigns a fixed time quantum to each process.
+FCFS executes processes in arrival order.
+SJF selects the shortest job first.
+
+
+
+Chapter 6: Deadlocks
+
+A deadlock occurs when multiple processes wait indefinitely for resources.
+The four Coffman conditions are:
+Mutual Exclusion
+Hold and Wait
+No Preemption
+Circular Wait

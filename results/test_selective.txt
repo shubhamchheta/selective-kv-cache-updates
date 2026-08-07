@@ -1,0 +1,16 @@
+KVcache prepared in 0.8164381980895996 seconds
+[0]: Semantic Similarity: 0.83053,	 cache time: 4.76837158203125e-07,	 generate time: 0.3412363529205322
+[0]: [Cumulative]: Semantic Similarity: 0.83053,	 cache time: 4.76837158203125e-07,	 generate time: 0.3412363529205322
+[1]: Semantic Similarity: 0.70164,	 cache time: 2.384185791015625e-07,	 generate time: 0.864161491394043
+[1]: [Cumulative]: Semantic Similarity: 0.76609,	 cache time: 3.5762786865234375e-07,	 generate time: 0.6026989221572876
+[2]: Semantic Similarity: 0.95234,	 cache time: 2.384185791015625e-07,	 generate time: 0.2617037296295166
+[2]: [Cumulative]: Semantic Similarity: 0.82817,	 cache time: 3.178914388020833e-07,	 generate time: 0.48903385798136395
+[3]: Semantic Similarity: 0.93084,	 cache time: 2.384185791015625e-07,	 generate time: 0.16774892807006836
+[3]: [Cumulative]: Semantic Similarity: 0.85384,	 cache time: 2.980232238769531e-07,	 generate time: 0.40871262550354004
+[4]: Semantic Similarity: 0.23009,	 cache time: 2.384185791015625e-07,	 generate time: 0.16866374015808105
+[4]: [Cumulative]: Semantic Similarity: 0.72909,	 cache time: 2.86102294921875e-07,	 generate time: 0.3607028484344482
+
+Result for ./results/test_selective.txt
+Prepare time: 0.8164381980895996
+Average Semantic Similarity: 0.7290886223316193
+cache time: 2.86102294921875e-07,	 generate time: 0.3607028484344482

@@ -1,0 +1,42 @@
+[
+    {
+        "question": "What is an operating system?",
+        "answer": "An operating system manages computer hardware and software resources."
+    },
+    {
+        "question": "Name two operating systems.",
+        "answer": "Linux and Windows."
+    },
+    {
+        "question": "What is a process?",
+        "answer": "A program in execution."
+    },
+    {
+        "question": "Which scheduling algorithms are mentioned?",
+        "answer": "FCFS, SJF and Round Robin."
+    },
+    {
+        "question": "What does virtual memory do?",
+        "answer": "It allows programs to use more memory than physically available."
+    },
+    {
+        "question": "Which file systems are listed?",
+        "answer": "NTFS, FAT32 and ext4."
+    },
+    {
+        "question": "What does FCFS stand for?",
+        "answer": "First Come First Serve."
+    },
+    {
+        "question": "What is Round Robin scheduling?",
+        "answer": "It assigns a fixed time quantum to each process."
+    },
+    {
+        "question": "What is the internal code name?",
+        "answer": "ORION-27"
+    },
+    {
+        "question": "Which scheduling algorithm executes the highest-priority process first?",
+        "answer": "Priority Scheduling."
+    }
+]

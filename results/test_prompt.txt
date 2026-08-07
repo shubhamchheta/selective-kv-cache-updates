@@ -1,0 +1,8 @@
+KVcache prepared in 0.6281948089599609 seconds
+[0]: Semantic Similarity: -0.02712,	 cache time: 2.384185791015625e-07,	 generate time: 0.13608741760253906
+[0]: [Cumulative]: Semantic Similarity: -0.02712,	 cache time: 2.384185791015625e-07,	 generate time: 0.13608741760253906
+
+Result for ./results/test_prompt.txt
+Prepare time: 0.6281948089599609
+Average Semantic Similarity: -0.027117568999528885
+cache time: 2.384185791015625e-07,	 generate time: 0.13608741760253906

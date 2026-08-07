@@ -1,0 +1,7 @@
+Chapter 5: CPU Scheduling
+
+Round Robin scheduling assigns a fixed time quantum to each process.
+
+FCFS executes processes in arrival order.
+
+SJF selects the shortest job first.

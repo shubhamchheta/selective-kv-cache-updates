@@ -1,0 +1,8 @@
+KVcache prepared in 1.5597810745239258 seconds
+[0]: Semantic Similarity: 0.84323,	 cache time: 2.384185791015625e-07,	 generate time: 1.3805315494537354
+[0]: [Cumulative]: Semantic Similarity: 0.84323,	 cache time: 2.384185791015625e-07,	 generate time: 1.3805315494537354
+
+Result for ./results/llama31_test.txt
+Prepare time: 1.5597810745239258
+Average Semantic Similarity: 0.8432290554046631
+cache time: 2.384185791015625e-07,	 generate time: 1.3805315494537354

@@ -1,0 +1,13 @@
+Chapter 6: Deadlocks
+
+A deadlock occurs when multiple processes wait indefinitely for resources.
+
+The four Coffman conditions are:
+
+Mutual Exclusion
+
+Hold and Wait
+
+No Preemption
+
+Circular Wait.
