@@ -8,7 +8,7 @@ import os
 
 SQUAD_FILE = "datasets/squad/train-v2.0.json"
 
-TEXTBOOK_DIR = "datasets/squad/textbook"
+TEXTBOOK_DIR = "datasets/squad/small_textbook"
 
 OUTPUT_FILE = "datasets/squad/questions_small.json"
 
@@ -42,12 +42,36 @@ for i in range(1, NUM_CHAPTERS + 1):
     )
 
     with open(path, "r", encoding="utf-8") as f:
-        chapters[i] = f.read()
+        text = f.read()
+
+    chapters[i] = text
 
     print(
         f"Chapter {i:02d}: "
-        f"{len(chapters[i].split())} words"
+        f"{len(text.split())} words"
     )
+
+
+# ============================================================
+# NORMALIZATION
+# ============================================================
+
+def normalize(text):
+    """
+    Normalize text for robust matching.
+    """
+
+    return " ".join(
+        text.lower()
+        .replace("\n", " ")
+        .split()
+    )
+
+
+normalized_chapters = {
+    chapter: normalize(text)
+    for chapter, text in chapters.items()
+}
 
 
 # ============================================================
@@ -60,7 +84,8 @@ chapter_questions = {
 }
 
 
-print("\nFinding questions belonging to small chapters...")
+print("\nFinding questions that are answerable "
+      "from the SMALL textbook...")
 
 
 for article in squad["data"]:
@@ -69,12 +94,38 @@ for article in squad["data"]:
 
         context = paragraph["context"]
 
+        context_normalized = normalize(context)
+
         # ----------------------------------------------------
-        # Check each question
+        # IMPORTANT:
+        #
+        # We only consider a SQuAD context if the COMPLETE
+        # context occurs inside our small textbook.
+        #
+        # This guarantees that the question belongs to the
+        # actual knowledge available to our experiment.
+        # ----------------------------------------------------
+
+        matching_chapters = []
+
+        for chapter_number, chapter_text in normalized_chapters.items():
+
+            if context_normalized in chapter_text:
+
+                matching_chapters.append(chapter_number)
+
+        # Context does not exist in small textbook
+        if not matching_chapters:
+            continue
+
+
+        # ----------------------------------------------------
+        # Process questions
         # ----------------------------------------------------
 
         for qa in paragraph["qas"]:
 
+            # Skip impossible questions
             if qa.get("is_impossible", False):
                 continue
 
@@ -87,36 +138,38 @@ for article in squad["data"]:
 
             answer = answers[0]["text"]
 
+            answer_normalized = normalize(answer)
+
+
             # ------------------------------------------------
-            # Check which small chapter contains the answer
+            # Make sure answer is actually present
             # ------------------------------------------------
 
-            for chapter_number, chapter_text in chapters.items():
+            for chapter_number in matching_chapters:
 
-                chapter_lower = chapter_text.lower()
-                answer_lower = answer.lower()
+                if answer_normalized not in normalized_chapters[chapter_number]:
+                    continue
 
-                if answer_lower in chapter_lower:
 
-                    # Avoid duplicates
-                    duplicate = any(
-                        q["question"] == question
-                        for q in chapter_questions[chapter_number]
-                    )
+                # Avoid duplicate questions
+                duplicate = any(
+                    q["question"] == question
+                    for q in chapter_questions[chapter_number]
+                )
 
-                    if not duplicate:
+                if duplicate:
+                    continue
 
-                        chapter_questions[chapter_number].append({
 
-                            "question": question,
+                chapter_questions[chapter_number].append({
 
-                            "answer": answer,
+                    "question": question,
 
-                            "context": context
+                    "answer": answer,
 
-                        })
+                    "context": context
 
-                    break
+                })
 
 
 # ============================================================
@@ -126,7 +179,6 @@ for article in squad["data"]:
 questions = []
 
 print("\nSelecting questions...")
-
 
 for chapter_number in range(1, NUM_CHAPTERS + 1):
 
