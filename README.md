@@ -21,25 +21,6 @@ University of Bayreuth.
 
 ---
 
-## Why this project?
-
-Large language models can use KV caching to avoid repeatedly
-processing the same context during inference. However, when a
-knowledge source changes, a conventional approach is to rebuild the
-complete cache.
-
-For a long document with a small modification, this can result in
-unnecessary computation.
-
-The challenge is that Transformer representations are causally
-dependent on previous tokens. Therefore, simply recomputing the
-changed chapter is not sufficient.
-
-This project investigates how much of the existing cache can be
-safely reused while still producing the correct updated cache.
-
----
-
 ## Approach
 
 The document is divided into segments (chapters in the current
@@ -57,27 +38,7 @@ When a segment changes:
 
 ## Our Implementation
 
-The implemented method divides the knowledge source into segments and identifies the first modified segment.
-The existing cache is then split conceptually into:
-Prefix cache                    Tail cache
-──────────────────────          ─────────────────────────────
-[C1] [C2] [C3]                  [C4] [C5] [C6] [C7] [C8]
-        reused                         recomputed
-After the document modification:
-Updated document
-
-[C1] [C2] [C3] | [C4'] [C5] [C6] [C7] [C8]
-                 └─────────────────────────┘
-                         recompute
-The update procedure is:
-1.	Identify the first changed segment. 
-2.	Keep the KV cache of the unchanged prefix. 
-3.	Crop the prefix cache to the corresponding token range. 
-4.	Pass the prefix cache to the model as past_key_values. 
-5.	Recompute the changed segment together with the complete suffix. 
-6.	Obtain the updated KV cache for the modified document. 
-7.	Use the updated cache for downstream question answering. 
-The key idea is that only the part of the cache that can be affected by the modification is recomputed.
+<img width="449" height="862" alt="image" src="https://github.com/user-attachments/assets/a0692f68-89e9-48f4-965c-5aeb0f905462" />
 
 ---
 
@@ -125,26 +86,6 @@ This setup makes it possible to evaluate the method under different modification
 The selective update strategy was compared with rebuilding the complete KV cache from the updated document.
 
 <img width="596" height="388" alt="image" src="https://github.com/user-attachments/assets/4fd3883a-3538-4a6d-85bc-12b9b65c21b5" />
-
----
-
-## Main observation
-
-The benefit of selective cache updates depends strongly on the position of the modification.
-When a change occurs near the end of the document, most of the existing prefix cache remains valid and can be reused.
-For example:
-Chapter 8 changed
-
-[C1] [C2] [C3] [C4] [C5] [C6] [C7]  | [C8']
- └──────────────────────────────────┘
-             85.67% reused
-When the modification occurs near the beginning, a much larger portion of the document must be recomputed:
-Chapter 2 changed
-
-[C1]  | [C2'] [C3] [C4] [C5] [C6] [C7] [C8]
-      └────────────────────────────────────┘
-                    recompute
-This explains why the speedup decreases as the modification moves toward the beginning of the document.
 
 ---
 
