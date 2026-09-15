@@ -89,7 +89,8 @@ The selective update strategy was compared with rebuilding the complete KV cache
 
 ---
 
-##Response Quality 
+## [Selective Update KV Cache.pptx](https://github.com/user-attachments/files/32225411/Selective.Update.KV.Cache.pptx)
+Response Quality 
 
 In addition to runtime, the generated answers were evaluated using BERTScore against the corresponding reference answers.
 For the evaluated scenarios, the selective update produced the same measured BERTScore as the full-cache baseline:
