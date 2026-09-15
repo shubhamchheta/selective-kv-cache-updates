@@ -107,11 +107,12 @@ The current prototype uses chapter-level segmentation, while the underlying appr
 Four document modification scenarios were evaluated.
 The changed chapter was placed at different positions in the knowledge source in order to measure how the location of a modification affects cache reuse and update efficiency.
 
-Experiment	Changed chapter	Reused tokens	Reuse ratio
-E1	        Chapter 8	       3,102	      85.67%
-E2	        Chapter 6	       2,197	      60.67%
-E3	        Chapter 4	       1,255	      34.66%
-E4	        Chapter 2	       420	        11.60%
+[runtime_comparison.pdf](https://github.com/user-attachments/files/32225224/runtime_comparison.pdf)
+[Reusable Prefix Ratio and Selective-Update Speedup.pdf](https://github.com/user-attachments/files/32225223/Reusable.Prefix.Ratio.and.Selective-Update.Speedup.pdf)
+[experimental_procedure.drawio.pdf](https://github.com/user-attachments/files/32225222/experimental_procedure.drawio.pdf)
+[cache_implementation.drawio.pdf](https://github.com/user-attachments/files/32225221/cache_implementation.drawio.pdf)
+[squad_preparation.drawio.pdf](https://github.com/user-attachments/files/32225219/squad_preparation.drawio.pdf)
+
 
 This setup makes it possible to evaluate the method under different modification positions rather than measuring only a single update case.
 
@@ -123,11 +124,7 @@ This setup makes it possible to evaluate the method under different modification
 
 The selective update strategy was compared with rebuilding the complete KV cache from the updated document.
 
-Changed chapter	Full rebuild	Selective update	Speedup	Runtime reduction
-Chapter 8       	0.472 s      	0.084 s	         5.62×	  82.2%
-Chapter 6	        0.474 s     	0.194 s        	 2.44×	  59.1%
-Chapter 4	        0.474 s	      0.312 s	         1.52×	  34.2%
-Chapter 2        	0.473 s     	0.428 s	         1.10×	  9.5%
+<img width="596" height="388" alt="image" src="https://github.com/user-attachments/assets/4fd3883a-3538-4a6d-85bc-12b9b65c21b5" />
 
 ---
 
@@ -155,11 +152,9 @@ This explains why the speedup decreases as the modification moves toward the beg
 
 In addition to runtime, the generated answers were evaluated using BERTScore against the corresponding reference answers.
 For the evaluated scenarios, the selective update produced the same measured BERTScore as the full-cache baseline:
-Experiment	Full rebuild	Selective update
-E1          	0.781	        0.781
-E2	          0.779	        0.779
-E3	          0.779       	0.779
-E4	          0.779	        0.779
+
+<img width="598" height="365" alt="image" src="https://github.com/user-attachments/assets/2607f05a-0503-4cab-a11c-2f8bfdd554c3" />
+
 No measured response-quality degradation was observed under the tested conditions.
 
 ---
